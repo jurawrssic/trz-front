@@ -15,8 +15,18 @@ html {
   border-color: #b3b8bd;
 }
 
+.all-borders {
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  padding: 3%;
+}
+
 a {
   color: rgb(100, 0, 0) !important;
+  text-decoration: none !important;
+  padding: 1px 15px !important;
 }
 
 a:hover {

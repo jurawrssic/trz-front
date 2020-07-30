@@ -8,7 +8,7 @@ import weapon from "./../assets/ak-47.png";
 function Inventory() {
   return (
     <FormGroup>
-      <Row className="text-center d-flex">
+      <Row className="text-center d-flex border-top pt-4">
         <Col xs="3">
           <img className="items-icon" src={water} alt="Water Bottle" />
           <br></br>

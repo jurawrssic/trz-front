@@ -11,7 +11,7 @@ function Register() {
     <Form>
       <h4>New Person</h4>
       <FormGroup>
-        <Row>
+        <Row className="border-top pt-4">
           <Col xs="8">
             <Label for="personName">Your name:</Label>
             <Input

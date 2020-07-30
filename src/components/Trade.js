@@ -18,16 +18,18 @@ function Trade() {
     <Row>
       <Form>
         <Col xs="12">
-          <h4>Person 1</h4>
+          <h4>#1 Person's trade cost: </h4>
           <Inventory />
         </Col>
         <Col xs="12">
-          <h4>Person 1</h4>
+          <h4>#2 Person's trade cost: </h4>
           <Inventory />
         </Col>
-        <Button outline color="secondary">
-          Trade!
-        </Button>
+        <Col className="text-center mt-5">
+          <Button outline color="secondary">
+            Trade!
+          </Button>
+        </Col>
       </Form>
     </Row>
   );
