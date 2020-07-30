@@ -18,13 +18,15 @@ function Trade() {
     <Row>
       <Form>
         <Col xs="12">
+          <h4>Person 1</h4>
           <Inventory />
         </Col>
         <Col xs="12">
+          <h4>Person 1</h4>
           <Inventory />
         </Col>
         <Button outline color="secondary">
-          Submit
+          Trade!
         </Button>
       </Form>
     </Row>

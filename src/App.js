@@ -12,7 +12,7 @@ class App extends Component {
       <div className="App">
         <Container className="homepage">
           <Row>
-            <Col xs="6">
+            <Col xs="4">
               <h4>Zombie Resident</h4>
               <Nav vertical pills>
                 <NavItem>
@@ -32,7 +32,7 @@ class App extends Component {
                 </NavItem>
               </Nav>
             </Col>
-            <Col xs="6">
+            <Col xs="8" id="views">
               <Trade />
             </Col>
           </Row>
