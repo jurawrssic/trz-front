@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Table } from "reactstrap";
 import axios from "axios";
 
-function Person() {
+function People() {
   const [people, setPeople] = useState([]);
 
   useEffect(() => {
@@ -39,4 +39,4 @@ function Person() {
   );
 }
 
-export default Person;
+export default People;

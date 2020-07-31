@@ -51,7 +51,7 @@ class App extends Component {
                   <Route path="/reportInfected" component={Report}></Route>
                   <Route
                     path="/listRegisteredPeople"
-                    component={People}
+                    component={Person}
                   ></Route>
                 </Col>
               </Row>

@@ -47,10 +47,8 @@ function Register() {
           </Col>
         </Row>
       </FormGroup>
-
       <h4>Inventory</h4>
       <Inventory />
-
       <Button outline color="secondary" className="mt-2">
         Submit
       </Button>
