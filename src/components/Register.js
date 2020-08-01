@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Inventory from "./Inventory";
-//import MapContainer from "./MapContainer";
+import MapContainer from "./MapContainer";
 import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
 
-import "./../App.css";
-
 function Register() {
+  const [lonlat, setLonlat] = useState("");
+
+  const onMarkerChange = (lonlat) => {
+    setLonlat(lonlat);
+  };
+
   return (
     <Form>
       <h4>New Person</h4>
@@ -41,7 +45,18 @@ function Register() {
               <option>M</option>
             </Input>
           </Col>
-          <Col xs="12" className="pt-5 pb-3"></Col>
+        </Row>
+        <Row>
+          <Col xs="12">
+            <Input
+              hidden
+              id="personLatLon"
+              name="personLatLon"
+              type="text"
+              defaultValue={lonlat}
+            />
+            <MapContainer onMarkerChange={onMarkerChange} />
+          </Col>
         </Row>
       </FormGroup>
       <h4>Inventory</h4>
