@@ -2,20 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function Person() {
-  const [person, setPerson] = useState({
-    id: null,
-    name: null,
-    age: null,
-    gender: null,
-    latlon: null,
-    infected: null,
-    //id: response.data.id,
-    //name: response.data.name,
-    //age: response.data.age,
-    //gender: response.data.gender,
-    //latlon: response.data.latlon,
-    //infected: response.data.infected,
-  });
+  const [people, setPerson] = useState([]);
 
   useEffect((props) => {
     const url =
@@ -26,11 +13,7 @@ function Person() {
     axios.get(url).then((response) => setPerson(response.data));
   }, []);
 
-  return (
-    <div>
-      <p>{this.state.person.name}</p>
-    </div>
-  );
+  return <div>{people.map((person, index))}</div>;
 }
 
 export default Person;
