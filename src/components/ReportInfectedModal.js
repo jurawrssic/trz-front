@@ -2,26 +2,26 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   Button,
-  Input,
   Modal,
   ModalHeader,
   ModalBody,
   ModalFooter,
+  Input,
 } from "reactstrap";
-
-import "./../App.css";
 
 function ReportInfectedModal({ name, id }) {
   const [show, setShow] = useState(false);
   const toggle = () => setShow(!show);
 
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit, errors } = useForm();
+
   const onSubmit = (data) => {
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ infected: data.reportedPersonID }),
     };
+
     fetch(
       "http://zssn-backend-example.herokuapp.com/api/people/" +
         data.reportedBy +
@@ -58,11 +58,11 @@ function ReportInfectedModal({ name, id }) {
               ref={register}
             ></input>
             <h6>Insert your ID so we can register who reported {name}:</h6>
-            <input
+            <Input
               name="reportedBy"
               className="darker-input"
               ref={register}
-            ></input>
+            ></Input>
             {errors.exmapleRequired && <span>This field is required</span>}
           </ModalBody>
           <ModalFooter className="let-there-be-dark">
