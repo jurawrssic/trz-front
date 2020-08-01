@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Person from "./components/Person";
 import People from "./components/People";
 import Register from "./components/Register";
 import UpdateLocation from "./components/UpdateLocation";
 import Trade from "./components/Trade";
-import Report from "./components/Report";
-import { Container, Row, Col, Nav, NavItem, NavLink } from "reactstrap";
+import { Container, Row, Col, Nav, NavItem } from "reactstrap";
 
 import "./App.css";
 
@@ -36,9 +34,6 @@ class App extends Component {
                     <NavItem className="mt-2">
                       <Link to="/reportInfected">Report</Link>
                     </NavItem>
-                    <NavItem className="mt-2">
-                      <Link to="/listRegisteredPeople">Registered</Link>
-                    </NavItem>
                   </Nav>
                 </Col>
                 <Col xs="8" id="views">
@@ -48,11 +43,7 @@ class App extends Component {
                     component={UpdateLocation}
                   ></Route>
                   <Route path="/trade" component={Trade}></Route>
-                  <Route path="/reportInfected" component={Report}></Route>
-                  <Route
-                    path="/listRegisteredPeople"
-                    component={Person}
-                  ></Route>
+                  <Route path="/reportInfected" component={People}></Route>
                 </Col>
               </Row>
             </Container>
