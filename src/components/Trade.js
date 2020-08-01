@@ -1,28 +1,34 @@
-import React, { useState, useEffect } from "react";
-import {
-  Col,
-  Row,
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText,
-} from "reactstrap";
-import axios from "axios";
-import { render } from "@testing-library/react";
+import React from "react";
+import { Col, Row, Button, Form, Input } from "reactstrap";
 import Inventory from "./Inventory";
 
 function Trade() {
+  //const [value1, setTradeValue1] = useState("");
+  //const [value2, setTradeValue2] = useState("");
+
   return (
     <Row>
-      <Form>
+      <Form id="tradeForm" name="tradeForm">
+        <Row>
+          <Col xs="9">
+            <h4>#1 Person's trade cost: </h4>
+          </Col>
+          <Col xs="3">
+            <Input bsSize="sm" placeholder="Insert #1 Persons's ID"></Input>
+          </Col>
+        </Row>
         <Col xs="12">
-          <h4>#1 Person's trade cost: </h4>
           <Inventory />
         </Col>
+        <Row className="mt-5">
+          <Col xs="9">
+            <h4>#2 Person's trade cost: </h4>
+          </Col>
+          <Col xs="3">
+            <Input bsSize="sm" placeholder="Insert #2 Persons's ID"></Input>
+          </Col>
+        </Row>
         <Col xs="12">
-          <h4>#2 Person's trade cost: </h4>
           <Inventory />
         </Col>
         <Col className="text-center mt-5">
