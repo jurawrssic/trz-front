@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import People from "./components/People";
-import Register from "./components/Register";
-import UpdateLocation from "./components/UpdateLocation";
-import Trade from "./components/Trade";
-import { Container, Row, Col, Nav, NavItem } from "reactstrap";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Container, Row, Col } from "reactstrap";
+
+import Navigation from "./components/Navigation";
+import NavigationRoutes from "./components/NavigationRoutes";
 
 import "./App.css";
 
@@ -17,33 +16,10 @@ class App extends Component {
             <Container className="homepage">
               <Row>
                 <Col xs="4">
-                  <h4>Zombie Resident</h4>
-                  <Nav vertical pills>
-                    <NavItem className="mt-2">
-                      <Link to="/">Home</Link>
-                    </NavItem>
-                    <NavItem className="mt-2">
-                      <Link to="/register">Register</Link>
-                    </NavItem>
-                    <NavItem className="mt-2">
-                      <Link to="/updateLocation">Update Location</Link>
-                    </NavItem>
-                    <NavItem className="mt-2">
-                      <Link to="/trade">Trade</Link>
-                    </NavItem>
-                    <NavItem className="mt-2">
-                      <Link to="/reportInfected">Report</Link>
-                    </NavItem>
-                  </Nav>
+                  <Navigation />
                 </Col>
                 <Col xs="8" id="views">
-                  <Route path="/register" component={Register}></Route>
-                  <Route
-                    path="/updateLocation"
-                    component={UpdateLocation}
-                  ></Route>
-                  <Route path="/trade" component={Trade}></Route>
-                  <Route path="/reportInfected" component={People}></Route>
+                  <NavigationRoutes />
                 </Col>
               </Row>
             </Container>
