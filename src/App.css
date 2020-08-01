@@ -1,26 +1,45 @@
 html {
-  background-color: #000;
+  background-color: rgb(35, 35, 35);
   padding: 5%;
   font-family: Helvetica, sans-serif;
   text-align: center;
 }
 
+a {
+  font-weight: bold;
+  color: rgb(95, 95, 95) !important;
+  text-decoration: none !important;
+  padding: 1px 15px !important;
+}
+
+a:hover {
+  color: rgb(195, 195, 195) !important;
+}
+
+#divMap {
+  position: relative !important;
+  left: -15px;
+}
+
 .App {
-  background-color: #000;
-  color: rgb(148, 148, 148);
+  background-color: rgb(35, 35, 35);
+  color: rgb(95, 95, 95) !important;
 }
 
-.let-there-be-dark {
-  background-color: #1a1a1a !important;
-  border-color: #1a1a1a !important;
-  color: #fff !important;
+.app-logo {
+  width: 16rem;
+  height: 7rem;
 }
 
-.darker-input {
-  background-color: #000000 !important;
-  border-color: #000000 !important;
-  color: rgb(172, 172, 172) !important;
-  font-family: zoombieland !important;
+.nav-icons {
+  width: 15%;
+  height: 15%;
+  margin-right: 15px;
+}
+
+.gender-icons {
+  width: 40%;
+  height: 45%;
 }
 
 .all-borders {
@@ -31,12 +50,14 @@ html {
   padding: 3%;
 }
 
-a {
-  color: rgb(100, 0, 0) !important;
-  text-decoration: none !important;
-  padding: 1px 15px !important;
+.let-there-be-dark {
+  background-color: rgb(35, 35, 35) !important;
+  border-color: rgb(35, 35, 35) !important;
+  color: #fff !important;
 }
 
-a:hover {
-  color: rgb(187, 0, 0) !important;
+.darker-input {
+  background-color: rgb(97, 97, 97);
+  border-color: rgb(97, 97, 97);
+  color: rgb(0, 0, 0) !important;
 }
