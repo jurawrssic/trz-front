@@ -1,17 +1,16 @@
 import React from "react";
 import { Col, Row, FormGroup, Label, Input } from "reactstrap";
-import water from "./../assets/water-bottle.png";
-import soup from "./../assets/soup.png";
-import meds from "./../assets/first-aid.png";
-import weapon from "./../assets/ak-47.png";
+import water from "./../assets/water.png";
+import soup from "./../assets/food.png";
+import meds from "./../assets/aid.png";
+import weapon from "./../assets/gun.png";
 
 function Inventory() {
   return (
     <FormGroup>
-      <Row className="text-center d-flex border-top pt-4">
+      <Row className="justify-content-center text-center border-top pt-3">
         <Col xs="3">
-          <img className="items-icon" src={water} alt="Water Bottle" />
-          <br></br>
+          <img src={water} alt="Water" />
           <Label for="inventoryWater">Fiji Water:</Label>
           <Input
             type="number"
@@ -31,7 +30,7 @@ function Inventory() {
           />
         </Col>
         <Col xs="3">
-          <img src={meds} alt="Medication" />
+          <img src={meds} alt="Aid" />
           <Label for="inventoryMeds">First Aid Pouch:</Label>
           <Input
             type="number"
@@ -41,7 +40,12 @@ function Inventory() {
           />
         </Col>
         <Col xs="3">
-          <img src={weapon} alt="AK-47" />
+          <img
+            className="d-block"
+            style={{ margin: "0 auto" }}
+            src={weapon}
+            alt="Gun"
+          />
           <Label for="inventoryWeapons">AK47:</Label>
           <Input
             type="number"
