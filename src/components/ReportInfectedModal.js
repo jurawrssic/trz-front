@@ -49,19 +49,19 @@ function ReportInfectedModal({ name, id }) {
         </ModalHeader>
         <form id="form1" onSubmit={handleSubmit(onSubmit)}>
           <ModalBody className="let-there-be-dark">
-            <input
+            <Input
               hidden
               readOnly
               type="text"
               name="reportedPersonID"
               value={id}
-              ref={register}
-            ></input>
+              innerRef={register}
+            ></Input>
             <h6>Insert your ID so we can register who reported {name}:</h6>
             <Input
               name="reportedBy"
               className="darker-input"
-              ref={register}
+              innerRef={register}
             ></Input>
             {errors.exmapleRequired && <span>This field is required</span>}
           </ModalBody>
