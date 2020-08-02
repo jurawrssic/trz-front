@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, Input } from "reactstrap";
+import { Table, Input, Row, Col, Label } from "reactstrap";
 
 import axios from "axios";
 
@@ -10,7 +10,6 @@ import dead from "./../assets/infected.png";
 
 function PersonTable({ person, index }) {
   // Change style from in line, and disable button when infected
-  person.id = person.location.split("/")[5];
   const tableStyle = {
     textDecoration: person.infected ? "line-through" : "none",
     color: person.infected ? "rgb(100, 0, 0)" : "#fff",
@@ -45,43 +44,59 @@ function PersonTable({ person, index }) {
 
 function People() {
   const [people, setPeople] = useState([]);
-  const [searchedValue, setSearchedValue] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const handleChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
 
   useEffect(() => {
     const url = "http://zssn-backend-example.herokuapp.com/api/people.json";
-
     axios.get(url).then((response) => setPeople(response.data));
-  }, []);
-
-  // Filter only filters once, wtf??? Check this later
-  const onSearch = (e) => {
-    setSearchedValue(e.target.value);
-    setPeople(people.filter((person) => person.name.includes(searchedValue)));
-  };
+    setSearchResults(people);
+    const results = people.filter((person, index) =>
+      person.name
+        .toString()
+        .toLowerCase()
+        .includes(searchQuery.toString().toLowerCase())
+    );
+    console.log(searchQuery);
+    setSearchResults(results);
+  }, [searchQuery]);
 
   return (
     <>
-      <Input
-        type="text"
-        placeholder="Search for Survivor's name..."
-        onChange={onSearch}
-        value={searchedValue}
-      ></Input>
+      <h4>Registered People</h4>
+      <Row className="justify=content-center border-top pt-4">
+        <Col xs="12" className="mb-3">
+          <Label for="searchQuery">
+            Input the name of whom you wish to find:
+          </Label>
+          <Input
+            type="text"
+            placeholder="Search for Survivor's name..."
+            id="searchQuery"
+            name="searchQuery"
+            value={searchQuery}
+            onChange={handleChange}
+          ></Input>
+        </Col>
 
-      <Table hover borderless className="text-center text-white">
-        <thead>
-          <tr>
-            <th>PERSON</th>
-            <th>NAME</th>
-            <th>AGE</th>
-            <th>LOCATION</th>
-            <th>REPORT</th>
-          </tr>
-        </thead>
-        {people.map((person, index) => (
-          <PersonTable key={index} index={index} person={person} />
-        ))}
-      </Table>
+        <Table hover borderless className="text-center text-white">
+          <thead>
+            <tr>
+              <th>PERSON</th>
+              <th>NAME</th>
+              <th>AGE</th>
+              <th>LOCATION</th>
+              <th>REPORT</th>
+            </tr>
+          </thead>
+          {searchResults.map((person, index) => (
+            <PersonTable key={index} index={index} person={person} />
+          ))}
+        </Table>
+      </Row>
     </>
   );
 }
