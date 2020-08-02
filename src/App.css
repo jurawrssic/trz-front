@@ -38,8 +38,12 @@ a:hover {
 }
 
 .gender-icons {
-  width: 40%;
+  width: 45%;
   height: 45%;
+}
+
+.info-text {
+  margin-top: 4%;
 }
 
 .all-borders {
