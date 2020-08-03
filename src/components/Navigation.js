@@ -11,10 +11,10 @@ import { Nav, NavItem } from "reactstrap";
 function Navigation() {
   return (
     <>
-      <Link to="/">
+      <Link to="/" className="nav-fixed">
         <img className="app-logo" src={logo} alt="Zombie Resident" />
       </Link>
-      <Nav vertical pills className="pl-5 mt-3">
+      <Nav vertical pills className="pl-5 mt-3" className="nav-spacing">
         <NavItem className="mt-4">
           <Link to="/register">
             <img className="nav-icons" src={register} alt="Register img" />

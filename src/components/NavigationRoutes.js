@@ -5,7 +5,7 @@ import Informations from "./Informations";
 import Register from "./Register";
 import UpdateLocation from "./UpdateLocation";
 import Trade from "./Trade";
-import RegisteredPeople from "./RegisteredPeople";
+import RegisteredPeopleContainer from "./RegisteredPeopleContainer";
 
 function NavigationRoutes() {
   return (
@@ -14,7 +14,7 @@ function NavigationRoutes() {
       <Route path="/register" component={Register}></Route>
       <Route path="/updateLocation" component={UpdateLocation}></Route>
       <Route path="/trade" component={Trade}></Route>
-      <Route path="/reportInfected" component={RegisteredPeople}></Route>
+      <Route path="/reportInfected" component={RegisteredPeopleContainer}></Route>
     </>
   );
 }
