@@ -18,12 +18,11 @@ function Register() {
     meds: 0,
     weapon: 0,
   });
-
   const onSubmitInventory = (newInventory) => {
     setInventory(newInventory);
   };
 
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     var inventoryItems =
       "Fiji Water:" +
@@ -38,24 +37,7 @@ function Register() {
       "AK47:" +
       inventory.weapon;
 
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        person: {
-          name: data.personName,
-          age: data.personAge,
-          gender: data.personGender,
-          lonlat
-        },
-        items: inventoryItems
-      }),
-    };
-
-    const b = axios.post('http://zssn-backend-example.herokuapp.com/api/people.json',
+    const url = axios.post('http://zssn-backend-example.herokuapp.com/api/people.json',
       {
         person: {
           name: data.personName,
@@ -65,10 +47,8 @@ function Register() {
         },
         items: inventoryItems
       }
-    ).then(response => console.log(response))
-      .catch(error => console.log(error))
-
-    console.log(data);
+    ).then(response => alert(response.status))
+      .catch(error => alert(error))
   };
 
   return (
@@ -107,9 +87,10 @@ function Register() {
             type="select"
             name="personGender"
             id="personGender"
+            defaultValue="-"
             innerRef={register}
           >
-            <option defaultValue disabled>
+            <option disabled>
               -
             </option>
             <option>F</option>
@@ -137,15 +118,16 @@ function Register() {
           currentInventory={inventory}
         />
       </Row>
-      <Button
-        outline
-        color="secondary"
-        className="mt-2"
-        type="submit"
-        form="registerForm"
-      >
-        Submit
+      <Row className="justify-content-center mt-4">
+        <Button
+          outline
+          color="secondary"
+          type="submit"
+          form="registerForm"
+        >
+          Submit
       </Button>
+      </Row>
     </Form>
   );
 }
