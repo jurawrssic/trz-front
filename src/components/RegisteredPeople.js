@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, Input, Row, Col, Label } from "reactstrap";
+import { Table, Input, Row, Col, Button, Alert } from "reactstrap";
 
 import axios from "axios";
 
@@ -8,7 +8,7 @@ import female from "./../assets/female.png";
 import male from "./../assets/male.png";
 import dead from "./../assets/infected.png";
 
-function PersonTable({ person, index }) {
+function PersonTable({ person, index, screenLocation, onSelectPerson, setAlert }) {
   // Change style from in line, and disable button when infected
   const tableStyle = {
     textDecoration: person.infected ? "line-through" : "none",
@@ -16,15 +16,20 @@ function PersonTable({ person, index }) {
   };
 
   const getGender = () => {
-    if (person.infected) {
-      return <img className="gender-icons" src={dead} alt="Location img" />;
-    } else if (person.gender === "F") {
-      return <img className="gender-icons" src={female} alt="Location img" />;
-    } else if (person.gender === "M") {
-      return <img className="gender-icons" src={male} alt="Location img" />;
-    }
+    return <img className="gender-icons" src={person.infected ? dead : (person.gender === "F" ? female : male)} alt="Gender" />
   };
 
+  const getButton = () => {
+    if (screenLocation === "outside") {
+      return <Button onClick={onSelect({ person })}>SELECT!</Button>
+    } else {
+      return <ReportInfectedModal name={person.name} location={person.location} setAlert={setAlert} />;
+    }
+  }
+
+  const onSelect = (newlySelectedPerson) => {
+    onSelectPerson(newlySelectedPerson);
+  }
   return (
     <>
       <tbody>
@@ -34,7 +39,7 @@ function PersonTable({ person, index }) {
           <td className="pt-3">{person.age}</td>
           <td className="pt-3">{person.lonlat}</td>
           <td>
-            <ReportInfectedModal name={person.name} id={person.id} />
+            {getButton()}
           </td>
         </tr>
       </tbody>
@@ -42,8 +47,9 @@ function PersonTable({ person, index }) {
   );
 }
 
-function People() {
+function RegisteredPeople({ screenLocation, onSelectPerson }) {
   const [people, setPeople] = useState([]);
+
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const handleChange = (e) => {
@@ -53,52 +59,55 @@ function People() {
   useEffect(() => {
     const url = "http://zssn-backend-example.herokuapp.com/api/people.json";
     axios.get(url).then((response) => setPeople(response.data));
-    setSearchResults(people);
+
     const results = people.filter((person, index) =>
       person.name
         .toString()
         .toLowerCase()
         .includes(searchQuery.toString().toLowerCase())
     );
-    console.log(searchQuery);
     setSearchResults(results);
   }, [searchQuery]);
 
+  const [alertMsg, setAlertMsg] = useState(
+  );
+  const setAlert = (message) => {
+    setAlertMsg(message);
+  }
+
   return (
     <>
-      <h4>Registered People</h4>
-      <Row className="justify=content-center border-top pt-4">
-        <Col xs="12" className="mb-3">
-          <Label for="searchQuery">
-            Input the name of whom you wish to find:
-          </Label>
-          <Input
-            type="text"
-            placeholder="Search for Survivor's name..."
-            id="searchQuery"
-            name="searchQuery"
-            value={searchQuery}
-            onChange={handleChange}
-          ></Input>
-        </Col>
-
-        <Table hover borderless className="text-center text-white">
-          <thead>
-            <tr>
-              <th>PERSON</th>
-              <th>NAME</th>
-              <th>AGE</th>
-              <th>LOCATION</th>
-              <th>REPORT</th>
-            </tr>
-          </thead>
-          {searchResults.map((person, index) => (
-            <PersonTable key={index} index={index} person={person} />
-          ))}
-        </Table>
-      </Row>
+      <Col xs="12" className="mb-3">
+        <Input
+          type="text"
+          placeholder="Search for Survivor's name..."
+          id="searchQuery"
+          name="searchQuery"
+          value={searchQuery}
+          onChange={handleChange}
+        ></Input>
+      </Col>
+      <Col className="text-center">
+        <Alert className={(typeof alertMsg !== 'undefined' && alertMsg.length > 0) ? '' : 'd-none'} color="secondary">
+          <h6>{alertMsg}</h6>
+        </Alert>
+      </Col>
+      <Table hover borderless className="text-center text-white">
+        <thead>
+          <tr>
+            <th>PERSON</th>
+            <th>NAME</th>
+            <th>AGE</th>
+            <th>LOCATION</th>
+            <th>REPORT</th>
+          </tr>
+        </thead>
+        {searchResults.map((person, index) => (
+          <PersonTable key={index} index={index} person={person} screenLocation={screenLocation} onSelectPerson={onSelectPerson} setAlert={setAlert} />
+        ))}
+      </Table>
     </>
   );
 }
 
-export default People;
+export default RegisteredPeople;

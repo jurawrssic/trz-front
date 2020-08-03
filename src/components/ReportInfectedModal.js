@@ -7,30 +7,37 @@ import {
   ModalBody,
   ModalFooter,
   Input,
+  Alert
 } from "reactstrap";
 
-function ReportInfectedModal({ name, id }) {
+function ReportInfectedModal({ name, location, setAlert }) {
   const [show, setShow] = useState(false);
   const toggle = () => setShow(!show);
 
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = (data) => {
+    const id = data.reportedPersonID.substring(53);
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ infected: data.reportedPersonID }),
+      body: JSON.stringify({ infected: id }),
     };
 
     fetch(
       "http://zssn-backend-example.herokuapp.com/api/people/" +
-        data.reportedBy +
-        "/report_infection.json",
+      data.reportedBy +
+      "/report_infection.json",
       requestOptions
     )
-      .then((response) => console.log(response))
-      .then((data) => console.log(data));
+      .then(response => onReportSent(response.status, response.statusText), toggle())
+      .catch(error => alert(error))
   };
+
+  const onReportSent = (status, text) => {
+    var message = status + " - " + text;
+    setAlert(message);
+  }
 
   return (
     <>
@@ -51,10 +58,9 @@ function ReportInfectedModal({ name, id }) {
           <ModalBody className="let-there-be-dark">
             <Input
               hidden
-              readOnly
               type="text"
               name="reportedPersonID"
-              value={id}
+              defaultValue={location}
               innerRef={register}
             ></Input>
             <h6>Insert your ID so we can register who reported {name}:</h6>
