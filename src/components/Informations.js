@@ -22,8 +22,6 @@ function Informations() {
     lostPoints: 0,
   });
 
-  console.log(info);
-
   useEffect(() => {
     const url1 =
       "http://zssn-backend-example.herokuapp.com/api/report/infected.json";
@@ -90,7 +88,7 @@ function Informations() {
           <img src={avgItemsPerson} alt="avgItemsPerson" />
         </Col>
         <Col xs="3" className="info-text">
-          Average of items per healthy person: {info.averageItemsPerPerson}
+          Average of items per healthy person: {info.averageItemsPerHealthyPerson}
         </Col>
         <Col xs="3">
           <img src={avgItemsInfected} alt="avgItemsInfected" />
