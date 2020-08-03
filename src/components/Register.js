@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Row, Button, Form, Label, Input } from "reactstrap";
+import { Col, Row, Button, Form, Label, Input, Alert } from "reactstrap";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
@@ -47,9 +47,23 @@ function Register() {
         },
         items: inventoryItems
       }
-    ).then(response => alert(response.status))
-      .catch(error => alert(error))
+    ).then(response => onReportSent(response.status, response.statusText))
+      .catch(error => onReportSent(error, ''))
   };
+
+  const [alertMsg, setAlertMsg] = useState(
+  );
+  const setAlert = (message) => {
+    setAlertMsg(message);
+  }
+  const onReportSent = (status, text) => {
+    var message = status + " - " + text;
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+    setAlert(message);
+    if (status == 201) {
+      document.getElementById("registerForm").reset();
+    }
+  }
 
   return (
     <Form
@@ -57,6 +71,11 @@ function Register() {
       name="registerForm"
       onSubmit={handleSubmit(onSubmit)}
     >
+      <Col className="text-center">
+        <Alert className={(typeof alertMsg !== 'undefined' && alertMsg.length > 0) ? '' : 'd-none'} color="secondary">
+          <h6>{alertMsg}</h6>
+        </Alert>
+      </Col>
       <h4>New Person</h4>
       <Row className="border-top pt-4">
         <Col xs="8">

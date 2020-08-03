@@ -4,8 +4,12 @@ import { Table, Input, Row, Col, Button, Alert } from "reactstrap";
 import axios from "axios";
 
 import RegisteredPeopleTable from "./RegisteredPeopleTable"
+import PaginationTable from "./PaginationTable"
 
 function RegisteredPeople({ screenLocation, onSelectPerson }) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(3);
+
   const [people, setPeople] = useState([]);
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -33,6 +37,12 @@ function RegisteredPeople({ screenLocation, onSelectPerson }) {
     setAlertMsg(message);
   }
 
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const slicedResults = searchResults.slice(indexOfFirstPost, indexOfLastPost);
+  // Change page
+  const paginate = pageNumber => setCurrentPage(pageNumber);
+
   return (
     <>
       <Col xs="12" className="mb-3">
@@ -45,11 +55,13 @@ function RegisteredPeople({ screenLocation, onSelectPerson }) {
           onChange={handleChange}
         ></Input>
       </Col>
-      <Col className="text-center">
-        <Alert className={(typeof alertMsg !== 'undefined' && alertMsg.length > 0) ? '' : 'd-none'} color="secondary">
-          <h6>{alertMsg}</h6>
-        </Alert>
-      </Col>
+      <Row>
+        <Col xs="12" className="text-center">
+          <Alert className={(typeof alertMsg !== 'undefined' && alertMsg.length > 0) ? '' : 'd-none'} color="secondary">
+            <h6>{alertMsg}</h6>
+          </Alert>
+        </Col>
+      </Row>
       <Table hover borderless className="text-center text-white">
         <thead>
           <tr>
@@ -60,10 +72,16 @@ function RegisteredPeople({ screenLocation, onSelectPerson }) {
             <th>{screenLocation === "outsideReportComponent" ? 'SELECT' : 'REPORT'} </th>
           </tr>
         </thead>
-        {searchResults.map((person, index) => (
+        {slicedResults.map((person, index) => (
           <RegisteredPeopleTable key={index} index={index} person={person} screenLocation={screenLocation} onSelectPerson={onSelectPerson} setAlert={setAlert} />
         ))}
       </Table>
+
+      <PaginationTable
+        postsPerPage={postsPerPage}
+        totalPosts={searchResults.length}
+        paginate={paginate}
+      />
     </>
   );
 }

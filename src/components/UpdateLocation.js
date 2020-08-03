@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Row, Col, Form, Input } from "reactstrap";
+import { Button, Row, Col, Input, Alert } from "reactstrap";
 
 import axios from "axios";
 
@@ -15,7 +15,7 @@ function UpdateLocation() {
   const [selectedPerson, setSelectedPerson] = useState({});
   const onSelectPerson = (newlySelectedPerson) => {
     setSelectedPerson(newlySelectedPerson);
-
+    setAlertMsg("Selected " + newlySelectedPerson.name + ", " + newlySelectedPerson.gender + ", " + newlySelectedPerson.age + ". You can now choose your new location on the map")
   }
 
   const onSubmit = () => {
@@ -30,17 +30,35 @@ function UpdateLocation() {
           lonlat
         }
       }
-    ).then(response => alert(response.status))
+    ).then(response => onReportSent(response.status, response.statusText))
       .catch(error => alert(error))
-
-    console.log(url);
   };
+
+  const [alertMsg, setAlertMsg] = useState(
+  );
+  const setAlert = (message) => {
+    setAlertMsg(message);
+  }
+  const onReportSent = (status, text) => {
+    var message = status + " - " + text;
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+    setAlert(message);
+    if (status == 200) {
+      setSelectedPerson('');
+      setLonlat('');
+    }
+  }
 
   return (
     <>
+      <Col className="text-center">
+        <Alert className={(typeof alertMsg !== 'undefined' && alertMsg.length > 0) ? '' : 'd-none'} color="secondary">
+          <h6>{alertMsg}</h6>
+        </Alert>
+      </Col>
       <h4>New Location</h4>
       <Row className="justify-content-center border-top pt-4">
-        <Col xs="8">
+        <Col xs="11">
           <RegisteredPeople screenLocation={"outsideReportComponent"} onSelectPerson={onSelectPerson} />
         </Col>
         <Input

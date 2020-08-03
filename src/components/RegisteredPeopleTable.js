@@ -7,7 +7,6 @@ import male from "./../assets/male.png";
 import dead from "./../assets/infected.png";
 
 function PersonTable({ person, index, screenLocation, onSelectPerson, setAlert }) {
-    // Change style from in line, and disable button when infected
     const tableStyle = {
         textDecoration: person.infected ? "line-through" : "none",
         color: person.infected ? "rgb(100, 0, 0)" : "#fff",
@@ -32,10 +31,10 @@ function PersonTable({ person, index, screenLocation, onSelectPerson, setAlert }
         <>
             <tbody>
                 <tr key={index + 1} style={tableStyle}>
-                    <th scope="row">{getGender()}</th>
-                    <td className="pt-3">{person.name}</td>
-                    <td className="pt-3">{person.age}</td>
-                    <td className="pt-3">{person.lonlat}</td>
+                    <th scope="row" width="15%">{getGender()}</th>
+                    <td className="pt-3" width="25%">{person.name}</td>
+                    <td className="pt-3" width="10%">{person.age}</td>
+                    <td className="pt-3" with="50%">{person.lonlat}</td>
                     <td>
                         {getButton(person, index)}
                     </td>
