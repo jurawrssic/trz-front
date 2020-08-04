@@ -64,7 +64,11 @@ function Trade() {
       document.body.scrollTop = document.documentElement.scrollTop = 0;
       return setAlert("Trade cost must be the same on both sides!");
     } if (person1.location === undefined || person2.location === undefined) {
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
       return setAlert("Must select person on both sides of the trade!");
+    } if (person1.infected || person2.infected) {
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
+      return setAlert("Infected people cannot trade!");
     } else {
       const itemsPick =
         "Fiji Water:" +
@@ -93,7 +97,7 @@ function Trade() {
         tradeQty1.weapon;
 
       const id = person1.location.substring(53);
-      const url = axios.post('http://zssn-backend-example.herokuapp.com/api/people/' + id + '/properties/trade_item.json',
+      axios.post('http://zssn-backend-example.herokuapp.com/api/people/' + id + '/properties/trade_item.json',
         {
           consumer: {
             name: person2.name,

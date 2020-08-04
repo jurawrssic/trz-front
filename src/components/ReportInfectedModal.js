@@ -6,8 +6,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  Input,
-  Alert
+  Input
 } from "reactstrap";
 
 function ReportInfectedModal({ name, location, setAlert }) {
@@ -59,12 +58,14 @@ function ReportInfectedModal({ name, location, setAlert }) {
             <Input
               hidden
               type="text"
+              id="reportedPersonID"
               name="reportedPersonID"
               defaultValue={location}
               innerRef={register}
             ></Input>
             <h6>Insert your ID so we can register who reported {name}:</h6>
             <Input
+              id="reportedBy"
               name="reportedBy"
               className="darker-input"
               innerRef={register}

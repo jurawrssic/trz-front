@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'reactstrap';
+
 const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
     const pageNumbers = [];
 

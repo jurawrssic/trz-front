@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, Input, Row, Col, Button, Alert } from "reactstrap";
+import { Table, Input, Col, Alert } from "reactstrap";
 
 import axios from "axios";
 
@@ -55,13 +55,11 @@ function RegisteredPeople({ screenLocation, onSelectPerson }) {
           onChange={handleChange}
         ></Input>
       </Col>
-      <Row>
-        <Col xs="12" className="text-center">
-          <Alert className={(typeof alertMsg !== 'undefined' && alertMsg.length > 0) ? '' : 'd-none'} color="secondary">
-            <h6>{alertMsg}</h6>
-          </Alert>
-        </Col>
-      </Row>
+      <Col xs="12" className="justify-content-center text-center">
+        <Alert className={(typeof alertMsg !== 'undefined' && alertMsg.length > 0) ? '' : 'd-none'} color="secondary">
+          <h6>{alertMsg}</h6>
+        </Alert>
+      </Col>
       <Table hover borderless className="text-center text-white">
         <thead>
           <tr>

@@ -24,7 +24,7 @@ function UpdateLocation() {
     } else {
       const id = selectedPerson.location.substring(53);
       console.log(id);
-      const url = axios.patch('http://zssn-backend-example.herokuapp.com/api/people/' + id + '.json',
+      axios.patch('http://zssn-backend-example.herokuapp.com/api/people/' + id + '.json',
         {
           person: {
             name: selectedPerson.name,
@@ -48,7 +48,7 @@ function UpdateLocation() {
     var message = status + " - " + text;
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     setAlert(message);
-    if (status == 200) {
+    if (status === 200) {
       setSelectedPerson('');
       setLonlat('');
     }

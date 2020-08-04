@@ -37,7 +37,7 @@ function Register() {
       "AK47:" +
       inventory.weapon;
 
-    const url = axios.post('http://zssn-backend-example.herokuapp.com/api/people.json',
+    axios.post('http://zssn-backend-example.herokuapp.com/api/people.json',
       {
         person: {
           name: data.personName,
