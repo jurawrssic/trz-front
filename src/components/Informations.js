@@ -15,7 +15,7 @@ import weaponIcon from "./../assets/gun.png";
 function Informations() {
   const [info, setInfo] = useState({
     infectedAverage: 0,
-    healthyAverage: 0,
+    healthyAverage: 1,
     averageItemsPerPerson: 0,
     averageItemsPerHealthyPerson: 0,
     averageItems: 0,
@@ -87,15 +87,19 @@ function Informations() {
         <Col xs="3">
           <img src={avgItemsPerson} alt="avgItemsPerson" />
         </Col>
-        <Col xs="3" className="info-text">
+        <Col xs="4" className="info-text">
           Average of items per healthy person: {info.averageItemsPerHealthyPerson}
         </Col>
+        <Col xs="4" className="info-text">
+          Average of items per person (infected and healthy): {info.averageItemsPerPerson}
+        </Col>
+      </Row>
+      <Row className="text-center justify-content-center mb-4">
         <Col xs="3">
           <img src={avgItemsInfected} alt="avgItemsInfected" />
         </Col>
-        <Col xs="3" className="info-text">
-          Average of items per person (infected and healthy):
-          {info.averageItemsPerPerson}
+        <Col xs="4" className="info-text">
+          Lost points due to infected survivors: {info.lostPoints}
         </Col>
       </Row>
       <h4>Items Info</h4>

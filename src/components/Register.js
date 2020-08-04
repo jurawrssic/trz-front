@@ -57,12 +57,14 @@ function Register() {
     setAlertMsg(message);
   }
   const onReportSent = (status, text) => {
+    if (status === 201 || status === 200) {
+      document.getElementById("registerForm").reset();
+      text = "Person registered"
+    }
     var message = status + " - " + text;
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     setAlert(message);
-    if (status === 201) {
-      document.getElementById("registerForm").reset();
-    }
+
   }
 
   return (
@@ -118,7 +120,7 @@ function Register() {
         </Col>
       </Row>
       <Row className="mb-4">
-        <Col xs="12">
+        <Col xs="12" id="map">
           <Input
             hidden
             id="personLonLat"

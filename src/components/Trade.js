@@ -16,7 +16,7 @@ function Trade() {
 
   const [person1, setPerson1] = useState('');
   const onSelectPerson1 = (newlySelectedPerson1) => {
-    setPerson1(...person1, newlySelectedPerson1);
+    setPerson1(newlySelectedPerson1);
     setAlertMsg("Selected " + newlySelectedPerson1.name + ", " + newlySelectedPerson1.gender + ", " + newlySelectedPerson1.age + " as Person #1")
   }
   const [tradeQty1, setTradeQty1] = useState({
@@ -34,7 +34,7 @@ function Trade() {
 
   const [person2, setPerson2] = useState('');
   const onSelectPerson2 = (newlySelectedPerson2) => {
-    setPerson2(...person2, newlySelectedPerson2);
+    setPerson2(newlySelectedPerson2);
     setAlertMsg("Selected " + newlySelectedPerson2.name + ", " + newlySelectedPerson2.gender + ", " + newlySelectedPerson2.age + " as Person #2")
   }
   const [tradeQty2, setTradeQty2] = useState({
@@ -111,12 +111,14 @@ function Trade() {
   };
 
   const onSubmitTrade = (status, text) => {
+    if (status === 204 || status === 200) {
+      text = "Trade successfull"
+      document.getElementById("tradeForm").reset();
+    }
     var message = status + " - " + text;
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     setAlert(message);
-    if (status === 204) {
-      document.getElementById("tradeForm").reset();
-    }
+
   }
 
   return (

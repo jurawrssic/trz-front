@@ -23,7 +23,6 @@ function UpdateLocation() {
       setAlertMsg("Select a person to change location!")
     } else {
       const id = selectedPerson.location.substring(53);
-      console.log(id);
       axios.patch('http://zssn-backend-example.herokuapp.com/api/people/' + id + '.json',
         {
           person: {
@@ -45,13 +44,12 @@ function UpdateLocation() {
     setAlertMsg(message);
   }
   const onReportSent = (status, text) => {
+    if (status === 200) {
+      text = "Update successfull"
+    }
     var message = status + " - " + text;
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     setAlert(message);
-    if (status === 200) {
-      setSelectedPerson('');
-      setLonlat('');
-    }
   }
 
   return (

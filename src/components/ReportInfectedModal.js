@@ -34,7 +34,9 @@ function ReportInfectedModal({ name, location, setAlert }) {
   };
 
   const onReportSent = (status, text) => {
-    var message = status + " - " + text;
+    if (status === 204) {
+      text = "Report successfull"
+    } var message = status + " - " + text;
     setAlert(message);
   }
 
@@ -45,6 +47,7 @@ function ReportInfectedModal({ name, location, setAlert }) {
         color="danger"
         title="Report as infected"
         onClick={toggle}
+        id="reportButton"
       >
         REPORT
       </Button>
@@ -73,7 +76,7 @@ function ReportInfectedModal({ name, location, setAlert }) {
             {errors.exmapleRequired && <span>This field is required</span>}
           </ModalBody>
           <ModalFooter className="let-there-be-dark">
-            <Button outline type="submit" form="form1" color="danger">
+            <Button outline type="submit" form="form1" color="danger" id="sendReport">
               Report!
             </Button>
             <Button outline color="secondary" onClick={toggle}>

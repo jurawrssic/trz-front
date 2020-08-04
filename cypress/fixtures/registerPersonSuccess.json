@@ -1,0 +1,10 @@
+{
+  "id": "9ea7b40d-fd15-429f-bc40-ed73f2564383",
+  "name": "Julia Rodrigues",
+  "age": 24,
+  "gender": "F",
+  "lonlat": "POINT (-121.34365689849854 47.330742395837724)",
+  "created_at": "2020-08-04T13:11:58.629Z",
+  "updated_at": "2020-08-04T13:11:58.629Z",
+  "infected": false
+}
