@@ -17,4 +17,4 @@ describe('Tries to report people as infected', function () {
         cy.get('Report!').click();
         cy.contains("404 - Not Found");
     })
-}
+})
