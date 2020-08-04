@@ -60,7 +60,7 @@ function Register() {
     var message = status + " - " + text;
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     setAlert(message);
-    if (status == 201) {
+    if (status === 201) {
       document.getElementById("registerForm").reset();
     }
   }

@@ -19,19 +19,24 @@ function UpdateLocation() {
   }
 
   const onSubmit = () => {
-    const id = selectedPerson.location.substring(53);
-    console.log(id);
-    const url = axios.patch('http://zssn-backend-example.herokuapp.com/api/people/' + id + '.json',
-      {
-        person: {
-          name: selectedPerson.name,
-          age: selectedPerson.age,
-          gender: selectedPerson.gender,
-          lonlat
+    if (selectedPerson.location === undefined) {
+      setAlertMsg("Select a person to change location!")
+    } else {
+      const id = selectedPerson.location.substring(53);
+      console.log(id);
+      const url = axios.patch('http://zssn-backend-example.herokuapp.com/api/people/' + id + '.json',
+        {
+          person: {
+            name: selectedPerson.name,
+            age: selectedPerson.age,
+            gender: selectedPerson.gender,
+            lonlat
+          }
         }
-      }
-    ).then(response => onReportSent(response.status, response.statusText))
-      .catch(error => alert(error))
+      ).then(response => onReportSent(response.status, response.statusText))
+        .catch(error => alert(error))
+    }
+
   };
 
   const [alertMsg, setAlertMsg] = useState(
@@ -69,7 +74,7 @@ function UpdateLocation() {
         ></Input>
       </Row>
       <Row>
-        <Col xs="12">
+        <Col xs="12" id="map">
           <MapContainer onMarkerChange={onMarkerChange} />
         </Col>
       </Row>

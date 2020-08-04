@@ -18,7 +18,7 @@ function PersonTable({ person, index, screenLocation, onSelectPerson, setAlert }
 
     const getButton = (person, index) => {
         if (screenLocation === "outsideReportComponent") {
-            return <Button onClick={(e) => { onSelect(person) }}>SELECT!</Button>
+            return <Button onClick={(e) => { onSelect(person) }} id={person.name}>SELECT!</Button>
         } else {
             return <ReportInfectedModal name={person.name} location={person.location} setAlert={setAlert} />;
         }

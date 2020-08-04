@@ -25,14 +25,12 @@ function Trade() {
     meds: 0,
     weapon: 0,
   });
-  console.log(tradeQty1);
+
   const [tradeCost1, setTradeCost1] = useState(0);
   const onSubmitTrade1 = (newTradeQty1) => {
     setTradeQty1(newTradeQty1);
     setTradeCost1((newTradeQty1.water * itemCost.waterCost) + (newTradeQty1.soup * itemCost.soupCost) + (newTradeQty1.meds * itemCost.medsCost) + (newTradeQty1.weapon * itemCost.weaponCost));
   }
-
-  console.log(tradeCost1);
 
   const [person2, setPerson2] = useState('');
   const onSelectPerson2 = (newlySelectedPerson2) => {
@@ -65,6 +63,8 @@ function Trade() {
     if (tradeCost1 !== tradeCost2) {
       document.body.scrollTop = document.documentElement.scrollTop = 0;
       return setAlert("Trade cost must be the same on both sides!");
+    } if (person1.location === undefined || person2.location === undefined) {
+      return setAlert("Must select person on both sides of the trade!");
     } else {
       const itemsPick =
         "Fiji Water:" +
@@ -123,18 +123,18 @@ function Trade() {
         </Alert>
       </Col>
       <h4>Trading</h4>
-      <Row className="border-top pt-4">
+      <Row className="border-top pt-4" id="select1">
         <Label className="ml-3"><h6>Select Person #1</h6></Label>
         <RegisteredPeople screenLocation={"outsideReportComponent"} onSelectPerson={onSelectPerson1} />
-        <Col xs="12" className="mt-3">
+        <Col xs="12" className="mt-3" id="inventory1">
           <Inventory onSubmitInventory={onSubmitTrade1} currentInventory={tradeQty1} />
         </Col>
       </Row>
 
-      <Row className="border-top pt-4">
+      <Row className="border-top pt-4" id="select2">
         <Label className="ml-3"><h6>Select Person #2</h6></Label>
         <RegisteredPeople screenLocation={"outsideReportComponent"} onSelectPerson={onSelectPerson2} />
-        <Col xs="12" className="mt-3">
+        <Col xs="12" className="mt-3" id="inventory2">
           <Inventory onSubmitInventory={onSubmitTrade2} currentInventory={tradeQty2} />
         </Col>
       </Row>
