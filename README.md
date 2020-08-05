@@ -1,8 +1,39 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+<p align="center">
+<img src="https://i.imgur.com/j3wLJaB.png" alt="favicon" width="70"> 
+</p>
+<p align="center">
+<b>THE ZOMBIE RESIDENT</b>
+</p>
+
+<p align="center">
+  <b>HOMEPAGE</b>
+<img src="https://i.imgur.com/aQm2v9Y.png" alt="homepage">
+
+  <b>REGISTER PAGE</b>
+<img src="https://i.imgur.com/FaYgFXQ.png" alt="register"> 
+
+  <b>UPDATE LOCATION PAGE</b>
+<img src="https://i.imgur.com/4LuoxLw.png" alt="updatelocation"> 
+
+<b>TRADE PAGE</b>
+<img src="https://i.imgur.com/89Yc2Ds.png" alt="trade"> 
+
+<b>REPORT PAGE</b>
+<img src="https://i.imgur.com/ARkVEjJ.png" alt="report"> 
+
+<b>REPORT MODAL</b>
+<img src="https://i.imgur.com/FuFjuNZ.png" alt="reportmodal"> 
+</p>
+
+
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+Installs dependencies
 
 ### `npm start`
 
