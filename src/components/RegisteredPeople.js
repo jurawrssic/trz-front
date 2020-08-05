@@ -22,7 +22,7 @@ function RegisteredPeople({ screenLocation, onSelectPerson }) {
     const url = "http://zssn-backend-example.herokuapp.com/api/people.json";
     axios.get(url).then((response) => setPeople(response.data));
 
-    const results = people.filter((person, index) =>
+    const results = people.filter((person) =>
       person.name
         .toString()
         .toLowerCase()

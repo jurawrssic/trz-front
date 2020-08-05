@@ -18,51 +18,53 @@ function Informations() {
     healthyAverage: 1,
     averageItemsPerPerson: 0,
     averageItemsPerHealthyPerson: 0,
-    averageItems: 0,
+    averageItems: {
+      "Fiji Water": 0,
+      "Campbell Soup": 0,
+      "First Aid Pouch": 0,
+      "AK47": 0,
+    },
     lostPoints: 0,
   });
 
   useEffect(() => {
-    const url1 =
-      "http://zssn-backend-example.herokuapp.com/api/report/infected.json";
-    axios.get(url1).then((response) =>
-      setInfo({
-        ...info,
-        infectedAverage: response.data.report.average_infected,
-      })
-    );
+    async function fetchData() {
+      const [
+        firstResponse,
+        secondResponse,
+        thirdResponse,
+        fourthResponse,
+      ] = await Promise.all([
+        axios.get(
+          "http://zssn-backend-example.herokuapp.com/api/report/infected.json"
+        ),
+        axios.get(
+          "http://zssn-backend-example.herokuapp.com/api/report/non_infected.json"
+        ),
+        axios.get(
+          "http://zssn-backend-example.herokuapp.com/api/report/people_inventory.json"
+        ),
+        axios.get(
+          "http://zssn-backend-example.herokuapp.com/api/report/infected_points.json"
+        ),
+        axios.get(
+          "http://zssn-backend-example.herokuapp.com/api/report/infected_points.json"
+        ),
+      ]);
 
-    const url2 =
-      "http://zssn-backend-example.herokuapp.com/api/report/non_infected.json";
-    axios.get(url2).then((response) =>
       setInfo({
-        ...info,
-        healthyAverage: response.data.report.average_healthy,
-      })
-    );
-
-    const url3 =
-      "http://zssn-backend-example.herokuapp.com/api/report/people_inventory.json";
-    axios.get(url3).then((response) =>
-      setInfo({
-        ...info,
+        infectedAverage: firstResponse.data.report.average_infected,
+        healthyAverage: secondResponse.data.report.average_healthy,
         averageItemsPerPerson:
-          response.data.report.average_items_quantity_per_person,
+          thirdResponse.data.report.average_items_quantity_per_person,
         averageItemsPerHealthyPerson:
-          response.data.report.average_items_quantity_per_healthy_person,
+          thirdResponse.data.report.average_items_quantity_per_healthy_person,
         averageItems:
-          response.data.report.average_quantity_of_each_item_per_person,
-      })
-    );
-
-    const url4 =
-      "http://zssn-backend-example.herokuapp.com/api/report/infected_points.json";
-    axios.get(url4).then((response) =>
-      setInfo({
-        ...info,
-        lostPoints: response.data.report.total_points_lost,
-      })
-    );
+          thirdResponse.data.report.average_quantity_of_each_item_per_person,
+        lostPoints: fourthResponse.data.report.total_points_lost,
+      });
+    }
+    fetchData();
   }, []);
 
   return (
@@ -73,14 +75,14 @@ function Informations() {
           <img src={healthyIcon} alt="healthyIcon" />
         </Col>
         <Col xs="3" className="info-text">
-          Average of healthy people: {info.healthyAverage}
+          Average of healthy people: {info.healthyAverage.toFixed(2)}
         </Col>
         <Col xs="3">
           <img src={infectedIcon} alt="infectedIcon" />
         </Col>
         <Col xs="3" className="info-text">
           {" "}
-          Average of infected people: {info.infectedAverage}
+          Average of infected people: {info.infectedAverage.toFixed(2)}
         </Col>
       </Row>
       <Row className="mb-4 text-center">
@@ -88,10 +90,12 @@ function Informations() {
           <img src={avgItemsPerson} alt="avgItemsPerson" />
         </Col>
         <Col xs="4" className="info-text">
-          Average of items per healthy person: {info.averageItemsPerHealthyPerson}
+          Average of items per healthy person:{" "}
+          {info.averageItemsPerHealthyPerson.toFixed(2)}
         </Col>
         <Col xs="4" className="info-text">
-          Average of items per person (infected and healthy): {info.averageItemsPerPerson}
+          Average of items per person (infected and healthy):{" "}
+          {info.averageItemsPerPerson.toFixed(2)}
         </Col>
       </Row>
       <Row className="text-center justify-content-center mb-4">
@@ -99,7 +103,7 @@ function Informations() {
           <img src={avgItemsInfected} alt="avgItemsInfected" />
         </Col>
         <Col xs="4" className="info-text">
-          Lost points due to infected survivors: {info.lostPoints}
+          Lost points due to infected survivors: {info.lostPoints.toFixed(2)}
         </Col>
       </Row>
       <h4>Items Info</h4>
@@ -107,22 +111,22 @@ function Informations() {
         <Col xs="3">
           <img src={waterIcon} alt="waterIcon" />
           {"\n"}
-          Average of water per person: {info.averageItems["Fiji Water"]}
+          Average of water per person: {info.averageItems['Fiji Water'].toFixed(2)}
         </Col>
         <Col xs="3">
           <img src={soupIcon} alt="soupIcon" />
           {"\n"}
-          Average of food per person: {info.averageItems["Campbell Soup"]}
+          Average of food per person: {info.averageItems["Campbell Soup"].toFixed(2)}
         </Col>
         <Col xs="3">
           <img src={medsIcon} alt="medsIcon" />
           {"\n"}
-          Average of meds per person: {info.averageItems["First Aid Pouch"]}
+          Average of meds per person: {info.averageItems["First Aid Pouch"].toFixed(2)}
         </Col>
         <Col xs="3">
           <img src={weaponIcon} alt="weaponIcon" />
           {"\n"}
-          Average of weapons per person: {info.averageItems["AK47"]}
+          Average of weapons per person: {info.averageItems["AK47"].toFixed(2)}
         </Col>
       </Row>
     </>
