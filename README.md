@@ -8,7 +8,7 @@
 
 <p align="center">
   <b>HOMEPAGE</b>
-<img src="https://i.imgur.com/aQm2v9Y.png" alt="homepage">
+<img src="https://prnt.sc/tu6bcc" alt="homepage">
 </p>
 <p align="center">
   <b>REGISTER PAGE</b>
