@@ -9,19 +9,24 @@
 <p align="center">
   <b>HOMEPAGE</b>
 <img src="https://i.imgur.com/aQm2v9Y.png" alt="homepage">
-
+</p>
+<p align="center">
   <b>REGISTER PAGE</b>
 <img src="https://i.imgur.com/FaYgFXQ.png" alt="register"> 
-
+</p>
+<p align="center">
   <b>UPDATE LOCATION PAGE</b>
 <img src="https://i.imgur.com/4LuoxLw.png" alt="updatelocation"> 
-
+</p>
+<p align="center">
 <b>TRADE PAGE</b>
 <img src="https://i.imgur.com/89Yc2Ds.png" alt="trade"> 
-
-<b>REPORT PAGE</b>
+</p>
+<p align="center">
+<b>REPORT PAGE</b> 
 <img src="https://i.imgur.com/ARkVEjJ.png" alt="report"> 
-
+</p>
+<p align="center">
 <b>REPORT MODAL</b>
 <img src="https://i.imgur.com/FuFjuNZ.png" alt="reportmodal"> 
 </p>
